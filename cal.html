@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" >
+  <title>JavaScript Calculator</title>
+  <link rel="stylesheet" href="cal.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+  <style>
+    .calculator {
+      transition: width 0.5s;
+    }
+
+    .resize-buttons {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+
+    .resize-buttons button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      color: #555;
+      margin-left: 5px;
+    }
+
+    .reopen-icon {
+      display: none;
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 16px;
+      color: #555;
+    }
+
+    .hidden {
+      width: 0;
+      overflow: hidden;
+    }
+
+    .hidden .reopen-icon {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <main class="calculator" id="calculator">
+
+    <div class="top">
+      <span class="unit"></span>
+      <section class="screen">
+        <div class="input"></div>
+        <div class="result"></div>
+      </section>
+    </div>
+
+    <div class="bottom">
+      <section class="keys">
+        <div class="column">
+          <span data-key="7">7</span>
+          <span data-key="4">4</span>
+          <span data-key="1">1</span>
+          <span data-key=".">.</span>
+        </div>
+        <div class="column">
+          <span data-key="8">8</span>
+          <span data-key="5">5</span>
+          <span data-key="2">2</span>
+          <span data-key="0">0</span>
+        </div>
+        <div class="column">
+          <span data-key="9">9</span>
+          <span data-key="6">6</span>
+          <span data-key="3">3</span>
+          <span class="equals-to" data-key="=">=</span>
+        </div>
+      </section>
+
+      <section class="operators">
+        <span class="delete">del</span>
+        <span data-key="÷">÷</span>
+        <span data-key="x">x</span>
+        <span data-key="-">-</span>
+        <span data-key="+">+</span>
+      </section>
+    </div>
+
+    <div class="resize-buttons">
+      <button class="minimize-button" onclick="toggleSize('minimize')"><i class="fas fa-window-minimize"></i></button>
+      <button class="maximize-button" onclick="toggleSize('maximize')"><i class="fas fa-window-maximize"></i></button>
+      <button class="hide-button" onclick="toggleSize('hide')"><i class="fas fa-window-close"></i></button>
+    </div>
+
+    <div class="reopen-icon" onclick="toggleSize('reopen')"><i class="fas fa-window-restore"></i></div>
+
+  </main>
+
+  <script src="cal.js"></script>
+  <script>
+    const calculator = document.getElementById('calculator');
+  
+    function toggleSize(action) {
+      if (action === 'minimize') {
+        calculator.style.width = '200px';
+      } else if (action === 'maximize') {
+        calculator.style.width = '350px';
+      } else if (action === 'hide') {
+        calculator.classList.add('hidden');
+      } else if (action === 'reopen') {
+        calculator.classList.remove('hidden');
+      }
+    }
+  </script>
+  
+</body>
+</html>
